@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Informaciòn</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let item of proveedor">
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="{{SRC}}{{item.imagen}}">
+      </ion-avatar>
+      <ion-label>
+        <h3>{{item.nombres}} {{item.apellidos}}</h3>
+        <p>{{item.direccion}}</p>
+      </ion-label>
+    </ion-item>
+
+    <img src="{{SRC}}{{item.imagen}}" alt="ion">
+    <ion-card-header>
+      <ion-card-title>Descripción:</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{item.descripcion}}
+      <p (click)="comentarios()">
+        <ion-icon name="chatbubble"></ion-icon> Ver opiniones
+      </p>
+    </ion-card-content>
+
+    <ion-footer>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-icon name="star"></ion-icon>
+          <div>{{item.calificacion}} Estrellas</div>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-icon name="card"></ion-icon>
+          <div>{{item.precio}}</div>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-icon name="time"></ion-icon>
+          <div>{{item.hora_min}}-{{item.hora_max}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10" offset="1">
+          <ion-button color="primary" expand="full" shape="round" (click)="mensaje()">
+            Contratar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-footer>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Categorias
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-toolbar>
+    <ion-searchbar animated (ionChange)="buscar($event)" placeholder="Buscar">
+    </ion-searchbar>
+  </ion-toolbar>
+  <ion-list>
+    <ion-item *ngFor="let item of categorias | filtro:textoBuscar : 'nombre'" (click)="selected(item.id)">
+      <ion-avatar slot="start">
+        <ion-icon name="albums"></ion-icon>
+      </ion-avatar>
+      <ion-avatar slot="end">
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item.nombre}}</h2>
+        <p>{{item.descripcion}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <!--<ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let item of categorias | filtro:textoBuscar : 'nombre'" (click)="selected(item.id)">
+        <ion-button class="menu" color="ligth">
+          <div>
+            <ion-icon style="color:black; width: 50px; height: 50px;" name="cube"></ion-icon><br>
+            <a style="color: black;">{{item.nombre}}</a>
+          </div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>-->
+
+</ion-content>

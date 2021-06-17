@@ -1,0 +1,29 @@
+ion-slide{
+    height: 100vh;
+    flex-direction: column;
+}
+ion-slide .side1 {
+    height: 100vh;
+    background: white;
+    /*background: rgb(104,97,217);
+    background: linear-gradient(90deg, rgba(104,97,217,1) 17%, rgba(115,134,213,1) 51%, rgba(0,121,255,1) 98%);*/
+}
+ion-slide .side2 {
+    height: 100vh;
+    background: rgb(104,97,217);
+    background: linear-gradient(90deg, rgba(104,97,217,1) 17%, rgba(115,134,213,1) 51%, rgba(0,121,255,1) 98%);
+}
+
+ion-img {
+   
+    max-height: 100vh;
+    overflow: hidden;
+    
+}
+h3 {
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+.botones {
+    margin-top: 80px;
+}

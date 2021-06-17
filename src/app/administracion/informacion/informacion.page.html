@@ -1,0 +1,19 @@
+<ion-content>
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let slide of slides">
+      <div class="{{slide.clase}}">
+        <ion-img [src]="slide.img"></ion-img>
+        <div class="botones"></div>
+        <ion-button color="primary" expand="full" shape="round" [routerLink]="'/login'">
+          Iniciar Sesión
+        </ion-button>
+        <ion-button color="danger" expand="full" shape="round" [routerLink]="'/registro'">
+          Registrarse
+        </ion-button>
+        <ion-button color="dark" expand="full" shape="round" [routerLink]="'/categorias'">
+          Omitir Sesión
+        </ion-button>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

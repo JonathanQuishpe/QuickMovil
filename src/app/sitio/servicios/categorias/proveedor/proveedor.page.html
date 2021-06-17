@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/categorias"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngFor="let item of categorias">
+      <div *ngIf="id == item.id">
+        {{item.nombre}}
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="proveedores.length > 0">
+  <ion-toolbar>
+    <ion-searchbar animated (ionChange)="buscar($event)" placeholder="Buscar">
+    </ion-searchbar>
+  </ion-toolbar>
+  <ion-list>
+    <ion-item *ngFor="let item of proveedores | filtro:textoBuscar : 'descripcion'" (click)="contratar(item.id)">
+      <ion-avatar slot="start">
+        <img src="{{SRC}}{{item.imagen}}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item.pnombre}} {{item.papellido}}</h2>
+        <h3>{{item.descripcion}}</h3>
+        <p><i *ngFor="let n of estrellas(item.calificacion)" class="fa fa-star" style="color: orange;"></i></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-content *ngIf="proveedores.length == 0">
+  <ion-list>
+    <ion-item color="tertiary">
+      <ion-label>La categoría no cuenta con proveedores.</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

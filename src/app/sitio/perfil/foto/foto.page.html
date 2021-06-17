@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Foto de Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <h3 *ngIf="images.length === 0" class="ion-text-center">Por favor seleccione una imagen</h3>
+  <ion-list>
+    <ion-item *ngFor="let img of images; index as pos">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="img.path"></ion-img>
+      </ion-thumbnail>
+      <ion-label>{{img.name}}</ion-label>
+      <ion-button slot="end" fill="clear" (click)="startUpload(img)">
+        <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
+      </ion-button>
+      <ion-button slot="end" fill="clear" (click)="deleteImage(img, pos)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
+      <ion-icon name="camera" slot="start"></ion-icon>
+      Seleccione una imagen
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

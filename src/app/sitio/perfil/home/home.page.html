@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="image-avatar" size="12">
+        <div class="avatar-preview">
+          <img src="{{this.PERFIL}}{{this.profileImage}}">
+          <ion-fab bottom right edge>
+            <ion-fab-button size="small" color="tertiary" routerLink="/foto">
+              <ion-icon name="camera"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
+      </ion-col>
+    </ion-row>
+    <form [formGroup]="userForm">
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">
+              Nombres:
+            </ion-label>
+            <ion-input type="text" formControlName="names"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">
+              Apellidos:
+            </ion-label>
+            <ion-input type="text" formControlName="lastnames"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">
+              Usuario:
+            </ion-label>
+            <ion-input type="text" formControlName="user"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">
+              Contraseña:
+            </ion-label>
+            <ion-input [type]="showPassowrd ? 'text' : 'password'" formControlName="password"></ion-input>
+            <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassoword()"></ion-icon>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-button expand="full" (click)="submit()">Actualizar</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

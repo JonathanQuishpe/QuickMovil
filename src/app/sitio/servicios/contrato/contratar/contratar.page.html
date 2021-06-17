@@ -1,0 +1,169 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Contratar Servicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let item of proveedor">
+    <img src="{{SRC}}{{item.imagen}}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{item.direccion}}</ion-card-subtitle>
+      <ion-card-title>{{item.nombres}} {{item.apellidos}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{item.descripcion}}
+    </ion-card-content>
+  </ion-card>
+  <form [formGroup]="contratarForm">
+    <ion-item>
+      <ion-label position="stacked">Celular:</ion-label>
+      <ion-input type="tel" formControlName="telefono" maxlength="10" minlength="10"></ion-input>
+    </ion-item>
+    <ion-list *ngIf="contratarForm.get('telefono').dirty || contratarForm.get('telefono').touched"
+      [hidden]="!contratarForm.get('telefono').hasError('minlength') && !contratarForm.get('telefono').hasError('maxlength') && !contratarForm.get('telefono').hasError('required') && !contratarForm.get('telefono').hasError('pattern')">
+      <ion-item
+        *ngIf="contratarForm.get('telefono').hasError('minlength') || contratarForm.get('telefono').hasError('maxlength')"
+        color="danger">
+        <small>Celular no válido (max:10,min:10) números.</small>
+      </ion-item>
+      <ion-item *ngIf="contratarForm.get('telefono').hasError('required')" color="danger">
+        <small>Celular requerido.</small>
+      </ion-item>
+      <ion-item *ngIf="contratarForm.get('telefono').hasError('pattern')" color="danger">
+        <small>Solo se permite números.</small>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+      <ion-label position="stacked">Convencional:</ion-label>
+      <ion-input type="tel" formControlName="convencional" maxlength="7" minlength="7"></ion-input>
+    </ion-item>
+    <ion-list *ngIf="contratarForm.get('convencional').dirty || contratarForm.get('convencional').touched"
+      [hidden]="!contratarForm.get('convencional').hasError('minlength') && !contratarForm.get('convencional').hasError('maxlength') && !contratarForm.get('convencional').hasError('required') && !contratarForm.get('convencional').hasError('pattern')">
+      <ion-item
+        *ngIf="contratarForm.get('convencional').hasError('minlength') || contratarForm.get('convencional').hasError('maxlength') "
+        color="danger">
+        <small>Convencional no válido (max:7,min:7) números.</small>
+      </ion-item>
+      <ion-item *ngIf="contratarForm.get('convencional').hasError('required')" color="danger">
+        <small>Convencional requerido.</small>
+      </ion-item>
+      <ion-item *ngIf="contratarForm.get('convencional').hasError('pattern')" color="danger">
+        <small>Solo números.</small>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+      <ion-label position="stacked">Fecha:</ion-label>
+      <ion-datetime min="{{dateTill}}" display-format="YYYY-MM-DD" formControlName="fecha"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="contratarForm.get('fecha').dirty || contratarForm.get('fecha').touched"
+      [hidden]="!contratarForm.get('fecha').hasError('required')">
+      <ion-text *ngIf="contratarForm.get('fecha').hasError('required')" color="danger">
+        <small>Fecha requerida.</small>
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Hora de serivicio de {{hora_min}} a {{hora_max}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Hora:</ion-label>
+      <ion-input type="tel" formControlName="hora" [min]="min_hora" [max]="max_hora" maxlength="2" minlength="2">
+      </ion-input>
+    </ion-item>
+    <ion-item *ngIf="contratarForm.get('hora').dirty || contratarForm.get('hora').touched"
+      [hidden]="!contratarForm.get('hora').hasError('min') && !contratarForm.get('hora').hasError('max') && !contratarForm.get('hora').hasError('required')">
+      <ion-text *ngIf="contratarForm.get('hora').hasError('min') || contratarForm.get('hora').hasError('max')"
+        color="danger">
+        <small>La hora debe estar entre {{min_hora}} - {{max_hora}}</small>
+      </ion-text>
+      <ion-text *ngIf="contratarForm.get('hora').hasError('required')" color="danger">
+        <small>La hora es requerida.</small>
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Minutos:</ion-label>
+      <ion-select formControlName="minutos">
+        <ion-select-option value="00">:00</ion-select-option>
+        <ion-select-option value="15">:15</ion-select-option>
+        <ion-select-option value="30">:30</ion-select-option>
+        <ion-select-option value="45">:45</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="contratarForm.get('minutos').dirty || contratarForm.get('minutos').touched"
+      [hidden]="!contratarForm.get('minutos').hasError('required')">
+      <ion-text *ngIf="contratarForm.get('minutos').hasError('required')" color="danger">
+        <small>Los minutos son requeridos.</small>
+      </ion-text>
+    </ion-item>
+    <!--<ion-item>
+      <ion-label position="stacked">Minutos:</ion-label>
+      <ion-input type='tel' formControlName="minutos" min="0" max="59" maxlength="2" minlength="2">
+      </ion-input>
+    </ion-item>-->
+    <!--<ion-item *ngIf="contratarForm.get('minutos').dirty || contratarForm.get('minutos').touched"
+      [hidden]="!contratarForm.get('minutos').hasError('min') && !contratarForm.get('minutos').hasError('max') && !contratarForm.get('minutos').hasError('required')">
+      <ion-text *ngIf="contratarForm.get('minutos').hasError('min') || contratarForm.get('minutos').hasError('max')"
+        color="danger">
+        <small>La minutos debe estar entre 0 - 59</small>
+      </ion-text>
+      <ion-text *ngIf="contratarForm.get('minutos').hasError('required')" color="danger">
+        <small>.</small>
+      </ion-text>
+    </ion-item>-->
+    <ion-item>
+      <ion-label position="stacked">Forma pago:</ion-label>
+      <ion-select formControlName="forma" #f>
+        <ion-select-option value="1">Efectivo</ion-select-option>
+        <ion-select-option value="2">Transferencia</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="contratarForm.get('forma').dirty || contratarForm.get('forma').touched"
+      [hidden]="!contratarForm.get('forma').hasError('required')">
+      <ion-text *ngIf="contratarForm.get('forma').hasError('required')" color="danger">
+        <small>Forma pago requerida.</small>
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text *ngIf="f.value == 2" color="primary">
+        <small>Banco: {{banco}} - Número de cuenta: {{cuenta}}</small>
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Descripción del servicio:</ion-label>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="contratarForm.get('descripcion').dirty || contratarForm.get('descripcion').touched"
+      [hidden]="!contratarForm.get('descripcion').hasError('required')">
+      <ion-text *ngIf="contratarForm.get('descripcion').hasError('required')" color="danger">
+        <small>Descripción requerida.</small>
+      </ion-text>
+    </ion-item>
+    <ion-searchbar placeholder="Buscar un lugar" #searchbar>
+    </ion-searchbar>
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="crearMarcador($event)">
+      <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
+        <agm-info-window>
+          <strong>InfoWindow content</strong>
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+    <ion-item>
+      <ion-label position="stacked">Referencia:</ion-label>
+      <ion-textarea formControlName="referencia"></ion-textarea>
+    </ion-item>
+    <ion-list *ngIf="contratarForm.get('referencia').dirty || contratarForm.get('referencia').touched"
+      [hidden]="!contratarForm.get('referencia').hasError('required')">
+      <ion-item *ngIf="contratarForm.get('referencia').hasError('required')" color="danger">
+        <small>Referencia requerida.</small>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" (click)="save()">Contratar</ion-button>
+  </form>
+  <!--<ion-list [hidden]="autocompleteItems.length == 0">
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>-->
+</ion-content>

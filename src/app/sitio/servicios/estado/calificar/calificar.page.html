@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/estado"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Calificar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="calificarForm">
+    <ion-item>
+      <ion-label position="stacked">Valoración:</ion-label>
+      <ion-select value="1" formControlName="valor" cancel-text="Cancelar" interface="action-sheet">
+        <ion-select-option value="1">1 estrella</ion-select-option>
+        <ion-select-option value="2">2 estrellas</ion-select-option>
+        <ion-select-option value="3">3 estrellas</ion-select-option>
+        <ion-select-option value="4">4 estrellas</ion-select-option>
+        <ion-select-option value="5">5 estrellas</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-item>
+        <ion-textarea placeholder="Comentarios" formControlName="comentario"></ion-textarea>
+      </ion-item>
+    </ion-item>
+    <ion-button expand="block" (click)="save()">Guardar</ion-button>
+  </form>
+</ion-content>

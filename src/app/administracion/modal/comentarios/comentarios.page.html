@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Comentarios</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="comentarios.length > 0">
+    <ion-item *ngFor="let comen of comentarios">
+      <ion-label>{{comen.comentarios}}</ion-label>
+      <ion-badge color="primary">{{comen.fecha}}</ion-badge>
+    </ion-item>
+  </ion-list>
+  <ion-button *ngIf="comentarios.length == 0" color="danger" expand="full">
+    Sin comentarios
+  </ion-button>
+</ion-content>

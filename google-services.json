@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1055221048751",
+    "firebase_url": "https://udla-84736.firebaseio.com",
+    "project_id": "udla-84736",
+    "storage_bucket": "udla-84736.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055221048751:android:639df2c02ef02fc0e83b5a",
+        "android_client_info": {
+          "package_name": "com.traceroot.quickservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055221048751-7gegfb25k36s1f2ajkbmscl4k3nisahb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqyTQ6P9KE3mAFk7R8nuU2aWl1rAtwrKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055221048751-7gegfb25k36s1f2ajkbmscl4k3nisahb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

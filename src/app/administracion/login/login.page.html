@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/informacion"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="form">
+    <form [formGroup]="loginForm">
+      <ion-item>
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <div *ngFor="let validation of validation_messages.email">
+          <div class="error-message"
+            *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+            {{ validation.message }}
+          </div>
+        </div>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <div *ngFor="let validation of validation_messages.password">
+          <div class="error-message"
+            *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            {{ validation.message }}
+          </div>
+        </div>
+      </div>
+      <ion-button expand="block" (click)="login()">Iniciar</ion-button>
+      <ion-button expand="block" color="danger" [routerLink]="['/informacion']">Cancelar
+      </ion-button>
+    </form>
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-chip [routerLink]="['/forgot']">
+          <ion-label>Olvide mi contraseña</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
